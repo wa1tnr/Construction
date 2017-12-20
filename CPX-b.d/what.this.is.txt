@@ -1,1 +1,9 @@
 CPX-b - second Circuit Playground Express box (hence, -b).
+
+The plan is to treat the CPX as a 14-pin device (arranged
+as with DIP-14) in terms of wiring to it (with a few n/c
+which work nicely as mechanical mount points for the
+CPX target board).
+
+Notably, Pins 7 and 14 are arranged as Ground and Vcc 3.3V,
+respectively, to match DIP-14 conventions.

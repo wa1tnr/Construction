@@ -1,0 +1,36 @@
+
+CPX-b -- not constructed yet (at all) as of 20 Dec 2017.
+
+
+n/c    - GND   1          14  3.3V - Yellow
+Red    - SCL   2          13  A3   - Orange
+Orange - SDA   3          12  A2   - Red
+n/c      3.3V  4          11  GND  - n/c
+Green  - RX    5          10  A1   - Black
+Blue   - TX    6           9  A0   - White
+Violet   GND   7           8  VOUT - Grey
+
+                Yellow 14
+Red    2        Orange 13
+Orange 3        Red    12
+
+Green  5        Black  10
+Blue   6        White   9
+Violet 7        Grey    8
+
+ five w         six w        eleven wires
+
+
+black  0
+brown  1
+red    2
+orange 3
+yellow 4
+green  5
+blue   6
+violet 7
+grey   8
+white  9
+
+
+

@@ -1,0 +1,207 @@
+
+Serial TX/RX UART pair connection
+between two distinct microcontrollers,
+each with its own 5VDC supply from
+USB.  (Laptop-to-laptop driven
+development environment, to provide
+each microcontroller with its own
+USB serial terminal (putty).
+
+23 January 2018 nis@discord Adafruit.
+
+ - - -
+
+BOM
+
+ 8 x 1N4148 signal diodes (snubbers)
+
+ 1 x half-sized breadboard with jumper (kit)
+
+There are four port pins to interconnect in
+this project: TX and RX for each of the two
+microcontrollers.  All four pins need protection
+from excursions below and above their own Vcc
+and GND.  This is done with signal diodes, so
+there will be eight 1N4148's used here (two
+per port pin!)
+
+Additionally, the two systems need to share a
+signal ground, or there will be too much noise
+on the line to get a good serial transfer.
+
+The positive supply leads for both targets are
+also used, though this is still in experimentation
+and may cause issues (looking into that soon).
+
+
+Therefore, a total of three (four, with Vcc) wires
+coming from each microcontoller target board, to
+the central meeting zone (breadboard) are used.
+That's six (with Vcc, eight) wires total: TXa, TXb,
+RXa, RXb, GNDa, GNDb (and 3.3 Vcca, Vccb) where
+a and b represent the two microcontroller targets.
+
+Construction begins with the breadboard.
+
+Prepare eight 1N4148 signal diodes, to connect them
+to the supply rails.  In this project, the north
+half of the breadboard will connect to one of the
+two target board's power supply lines (3.3v regulated!
+not the 5.0v unregulated feeding the low-drop-out
+3.3v regulators -- and their own grounds).
+
+North and south here mean divided by the central area
+(where a DIP integrated circuit straddles the two
+breadboarding areas).
+
+
+
+The 3.3v positive leads of the targets are never
+interconnected, though it may be possible (or even
+adviseable) to do so in some other project.  More
+experimentation and research on that, perhaps later.
+For now, do not do so.  (This may change as
+results come in).
+
+The jumper kit from Adafruit comes with a half-sized
+breadboard, and is color-coded.  Assuming there is
+no manufacturing variance on the colors, green and
+orange very short jumpers are used as a handy reference
+for the lengths of the axial leads of the 1N4148
+signal (here, snubber) diodes, before the 90 degree
+bend in them to affix them to the breadboard.
+
+For each pair (TX/RX) then, bend the leads of the
+signal diodes such that two match the length of the
+orange jumper, and two matching the green jumper.
+That's eight diodes, four of each bent length (a U
+shape after both leads are bent 90 degrees -- here
+referred to as a staple shape).
+
+This gives the leads of the diodes a good length to
+be correctly placed on the breadboard.  There are
+eight such diodes in total (four per microcontroller --
+two per port pin).
+
+Place them in series across each of the two power supply
+rail pairs, reverse-biased, with a junction in the main
+breadboarding area.  Tracing the circuit, start with the
+positive rail, and pretend it's been connected in reverse
+(to Ground, that is).  Trace through the first diode,
+from cathode (banded) end to anode (unbanded, reddish
+end of the clear case to the 5-way breadboard join (pick
+any row of the 30 available for this).
+
+As they are already pre-bent by this time, they cannot
+reach very far away at all from the supply rails, so
+this alone gives some idea of their correct placements!
+
+Again, positive rail (as marked on the breadboard in red)
+to the cathode end of the first diode.  Anode end of the
+first diode to the 5-way join in, say, row 20.  On the
+reference design, the lower breadboard area was populated
+first, so it's a longer-leaded diode that goes from the
+lowest (marked positive) rail, to hole '20b' of the 5-way
+junction in row 20.
+
+Definition: columns are single-letter alphabeticals a-j;
+rows are numbered 1-30.  Rotated 90 degrees counter-clockwise
+is the usual orientation when referencing the 'bottom' and
+'top' of the breadboard. (Rails are bottom or top, and the
+numbered rows look a lot more like columns in this orientation!)
+
+Second diode is placed just to the right of the first diode,
+with opposite polarity: the cathode band of the second diode
+is connected to hole '20a' (nearest the rail) and its anode
+is connected to the negative rail (marked in blue) nearby.
+
+Tracing this simple circuit, current cannot flow in it because
+both diodes are reverse-biased, with respect to the power
+supply (and the diodes are now connected in series with one
+another across the supply leads).
+
+The port pin will connect to the junction of the diodes!
+
+This protects them from excursions on the port pins above Vcc
+or below GND (negative voltages with respect to ground).
+
+They 'clamp' to Vcc and to GND; and are also called 'snubbers'
+in this configuration.  (perhaps not; unsure on this nomenclature).
+
+Likewise setup three more port pins, following the same ideas.
+
+Since the breadboard rails are not symmetrical with respect to
+the center (straddled) area, its important to reverse the 
+orientation of the diodes physically, for the other side of
+the board -- while maintaining them identically, electrically
+(as in: always reverse-biased with respect to the power supply
+rails they are connected across).
+
+The net effect here is that the two sides of the breadboard
+will not resemble each other exactly; on the upper half, the
+red end (anode) of the diodes goes to the negative (outside)
+rail, for the longer-lead length diodes.
+
+That is not exactly the case on the lower half of the breadboard,
+where the situation is mechanically reversed: the red (anode)
+end of the diodes goes to the same negative rail, but this time,
+short-lead length diodes are used, because the negative rail
+is now the *inside* rail, unlike the top half of the breadboard!
+
+What remains the same is simple: the shorter lead lengths (of
+the two kinds of pre-bent diode leads) are always connected to
+the nearest rail, and so the shorter ones are quite a bit shorter
+than the others.
+
+Electrically (trace from one supply rail, through each diode,
+to its mating supply rail) everything is always identical
+here.  It's only mechanically that the problem arises, due to
+the parallel (rather than mirrored) orientations of the supply
+rails.
+
+This all needs to be simplified verbally (way too long in this
+first draft form) and more diagrams could be of benefit.
+
+Easy to write and describe; parsing and reading it, not so much.
+
+TX is D4 Trinket M0
+Rx is D3 Trinket M0
+
+
+Current setup: TX to RX, RX to TX, GND to GND are the three
+interconnects between the two systems.
+
+All four port pins have snubbers (series diodes 1N4148) connected
+across (local!) Vcc and GND, reversed-biased.  The port is
+connected to their junction at a 3-way solder joint (cathode D1,
+anode D2, port pin n).
+
+As the other microcontroller is identically configured this
+way, that means a total of four 1N4148 diodes meet at the
+junction of TX on microcontroller A and RX on microcontroller B;
+eight diodes are used in total (four more for the second
+UART connection between micros).
+
+
+
+```c++
+ /*                               Figure A.  Port Pin Snubbers
+
+  +------------------------------------------------------------+
+  |                 SAMD21G18a TX-a    Port Pin protection     |
+  |                             o       1N4148 snubbers        |
+  |                             |                              |
+  |                             |                              |
+  |   Vcc 3.3V (+)  o----|<-----+------|<------o GND           |
+  |                             |                              |
+  |                             |                              |
+  |                             |                              |
+  |                       TX-b  o  to far-end of serial link   |
+  +------------------------------------------------------------+
+ */
+```
+Generally, rotate the diagram 90 degrees clockwise, to
+view in proper orientation with respect to Vcc and GND.
+Also mirror such that the far end of the serial link is
+to the right (not to the left, as it would be if the
+above diagram were rotated 90 clockwise).

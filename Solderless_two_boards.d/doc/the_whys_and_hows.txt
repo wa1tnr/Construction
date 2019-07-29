@@ -1,0 +1,40 @@
+Shattuck's ARM Forth implemented on two targets
+(to distribute Serial I/O functions)
+
+July 2019 (See June 2019 or earlier, as well)
+
+
+REPOSITORIES (three related repos are listed, below).
+
+This repository:
+    https://github.com/wa1tnr/Construction.git
+
+    Contains imagery of the project's physical substrate.
+
+Forth running on ItsyBitsyM4:
+    https://github.com/wa1tnr/Steno-Keyboard-Arduino-tnr.git
+
+    A Forth for SAMD51 - simple and a very Forth-oriented code base.  Written for Arduino IDE.
+
+Ersatz terminal emulation running on Trinket M0:
+    https://github.com/wa1tnr/m0_terminal_uart.git
+
+    To substitute the split-screen method of the Arduino IDE's 'Serial Monitor' a second target board (M0) is used, instead.
+
+
+DESCRIPTION
+
+The project takes two target boards (ItsyBitsyM4 and Trinket M0) and runs Shattuck's ARM Forth on one of them (the M4 board).  The upstream design leverages the split-screen 'Serial Monitor' of the Arduino IDE; the present project, instead, uses a separate target board (the M0) to talk to the primary project target (M4) via the TX/RX pair.
+
+Note that the M4-based Forth can run directly (can still talk to the Serial Monitor of the Arduino IDE) but Serial I/O has been redirected to Serial1.foo (TX/RX pair - the UART) rather than (the more usual) Serial.foo (the USB connection).
+
+The program running on the M0 does just a few small things to make life easier, when talking to the M4-based Forth target board over the TX/RX pair.
+
+Doing things this way was in lieu of rewriting the upstream code to account for things such as backspace, or for execution of multiple Forth words prior to pressing ENTER (Ctrl M or Ctrl J, in some instances).
+
+Making large, local changes to the upstream ARM Forth was not desired, at this stage in development; hence the idea of a second target board to do those serial terminal editing functions was (instead) conceived.
+
+This approach keeps the local copy of this Forth more in alignment with the upstream author's version, which was a priority, while providing for serial terminal I/O in a manner more consistent with other Forths under local development.
+
+
+Mon Jul 29 13:18:52 UTC 2019

@@ -1,0 +1,68 @@
+https://raw.githubusercontent.com/wa1tnr/Construction/master/PNP_fllwng_NPN.d/images.d/PNP_following_NPN-r00b_schem.png 
+
+https://github.com/wa1tnr/Construction/tree/master/PNP_fllwng_NPN.d
+(The scheme I used was constructed and tested empirically and isn't optimized much; I stopped work on it when it performed adequately for my use case.)
+Basically you start with finite resistances all around and experiment with their values, taking care not to allow too much current to flow in the wrong places.
+There's plenty on stackexchange.com discussing where the resistors go and their values.
+Different configurations produce somewhat different results. ;)
+
+My first iterations caused, for example, too little current flowing through the LED to make it bright.
+So I probably chose 2.2k as a current limiter for the LED, then optimized to make it behave about the same with or without the help of  a transitor to switch it on and off.
+To me, R2 and R3 form a voltage divider.
+
+Q1 'completes the ground' (sinks current).
+
+The test is to omit the microcontroller (entirely) and either ground the base of Q1 or connect it to Vcc.
+(with that 47k resistor between the base of Q1 and either Ground, or Vcc).
+
+If I lowered the 47k to say 5k it'd behave diffferently.
+
+Probably operating on the wrong part of the curve for Q1 (preventing Q1 from transitioning to the required extreme to get Q2 operating in its correct range (fully conducting).
+
+
+In particular I think I had trouble finding good values for R2 and R3.
+
+
+FADER - SCHEMATIC
+
+I did another circuit where I use a potentiometer to gradually pass current to one of two transistors connected to LED's, so that when it's turned all the way to the left, the left LED came on full bright, and when all the way to the right, the right LED came on full bright.
+I don't remember if the middle position was both LED's OFF, both On, and possibly both at half brightness.
+I seem to remember it reminded me of a stereo balance control.
+But when rotated to one extreme or the other, pretty sure only one LED was lit, and was lit at full brightness.
+Tested . . both LED's ON in center of potentiometer range @3.3 vdc ;)
+Nice fade on each side.  Each LED is about half-bright at center of pot travel.  Each goes to full bright at the two pot rotational extremes. 
+Based on wiring I'd say one is NPN and the other, PNP. ;)
+100 mA lol
+This LED Left-Ctr-Right fader circuit is extremely robust.
+Performs well from about 2.7 VDC up to 16 VDC. ;)  Behaves identically except for absolute brightness.
+The Constant Current function of the power supply kicks in to drop the supply below 18 VDC to around 17.5 VDC when it hits the control point (11 mA).
+;)
+I need to capture this schematic sometime. ;)  I like this fader.
+It's not perfectly balanced but is close.
+I like having the current-limiting power supply since I can fool with the circuit a bit more than I would, without it.
+
+recipe:
+
+PNP: 2N3640
+Emitter to Vcc
+Collector  to Ground thru a green LED and a 330 Ohm current-limiting resistor. 
+Base:
+180k from wiper of pot to Base, for both transistors.
+This means two wires lead from the potentiometer's center terminal (a singleton; not a stereo pot); one wire for each transistor's Base (through 180k bridging the wiper to the Base). 
+
+NPN: 2N2222A
+Vcc to green LED to 1k to Collector.
+Emitter grounded directly. 
+The entire power supply flows through the pot (100k) which is connected directly to both rails. 
+That's why nothing smoked. ;)
+ 
+I = E / R
+I = 16 / 100,000
+
+With 180k leading away from the pot's wiper, no chance of a dead short from anything there, either, I'd think.
+
+With all those high resistances, yeah the transistors aren't conducting a lot of current through the (discrete, green) LED's.
+
+I was having trouble developing full brightness. ;)
+Even at 16 V power supply.
+But the cutoffs were great (LED completely dark or almost so; did not check).

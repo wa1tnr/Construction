@@ -1,3 +1,5 @@
+Tue  9 Nov 22:36:22 UTC 2021
+
 https://raw.githubusercontent.com/wa1tnr/Construction/master/PNP_fllwng_NPN.d/images.d/PNP_following_NPN-r00b_schem.png 
 
 https://github.com/wa1tnr/Construction/tree/master/PNP_fllwng_NPN.d
@@ -43,18 +45,24 @@ I like having the current-limiting power supply since I can fool with the circui
 
 recipe:
 
-PNP: 2N3640
+PNP: PN3640 (confirmed on close visual inspection)
 Emitter to Vcc
-Collector  to Ground thru a green LED and a 330 Ohm current-limiting resistor. 
+Collector  to Ground thru a green LED and a 33 Ohm (not 330 Ohm as previously stated) current-limiting resistor.
 Base:
 180k from wiper of pot to Base, for both transistors.
 This means two wires lead from the potentiometer's center terminal (a singleton; not a stereo pot); one wire for each transistor's Base (through 180k bridging the wiper to the Base). 
 
-NPN: 2N2222A
+NPN: MPS2222A (2N2222A)
 Vcc to green LED to 1k to Collector.
 Emitter grounded directly. 
 The entire power supply flows through the pot (100k) which is connected directly to both rails. 
 That's why nothing smoked. ;)
+
+Measured: 989 Ohms for the 1k (Brown Black Red).
+Measured:  33 Ohms for the 330 Ohm resistor - MISTAKE in schematic capture; was always 33 not 330
+(Orange Orange Black not the mistaken visual with a brown band - the two side by side (from
+a supply of both) made this obvious.
+Measured: 106k Ohms (potentiometer).  Pot measures about 53k at mid-range of travel.  Goes right to zero ohms at end of travel.
  
 I = E / R
 I = 16 / 100,000
@@ -66,3 +74,5 @@ With all those high resistances, yeah the transistors aren't conducting a lot of
 I was having trouble developing full brightness. ;)
 Even at 16 V power supply.
 But the cutoffs were great (LED completely dark or almost so; did not check).
+
+END.

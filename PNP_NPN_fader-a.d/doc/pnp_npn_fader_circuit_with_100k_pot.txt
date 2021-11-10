@@ -51,6 +51,7 @@ Collector  to Ground thru a green LED and a 33 Ohm (not 330 Ohm as previously st
 Base:
 180k from wiper of pot to Base, for both transistors.
 This means two wires lead from the potentiometer's center terminal (a singleton; not a stereo pot); one wire for each transistor's Base (through 180k bridging the wiper to the Base). 
+This PNP is fully turned OFF when the potentiometer wiper potential is at Vcc.
 
 NPN: MPS2222A (2N2222A)
 Vcc to green LED to 1k to Collector.
